@@ -1,0 +1,148 @@
+.auth-container {
+  display: flex;
+  background-color: #060D17;
+  gap: 2rem;
+}
+
+.auth-background {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.auth-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, rgba(91, 142, 136, 0.5), rgba(153, 153, 153, 0.1));
+  padding: 20px;
+}
+
+.border {
+  border: 1px solid white;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.auth-form {
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  z-index: 1;
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 35px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.form-group input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.password-group {
+  display: flex;
+  align-items: center;
+}
+
+.password-group input {
+  width: calc(100% - 40px);
+}
+
+.password-toggle {
+  margin-left: -45px;
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #ccc;
+}
+
+.auth-button {
+  width: 96%;
+  padding: 10px;
+  background-color: #060D17;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.auth-button:hover {
+  background-color: white;
+  color: var(--primary-color);
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
+
+.message {
+  color: green;
+  text-align: center;
+}
+
+.auth-form p {
+  text-align: center;
+  margin-top: 10px;
+  color: #fff;
+  text-decoration: underline;
+}
+
+.register a {
+  color: white;
+}
+
+.auth-form p a {
+  color: white;
+  text-decoration: none;
+}
+
+.auth-form p a:hover {
+  text-decoration: underline;
+}
+
+.auth-logo {
+  margin-top: 20px;
+}
+
+.auth-logo img {
+  width: 100px;
+}
+
+@media (max-width: 1024px) {
+  .auth-background {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .auth-form {
+    max-width: 90%;
+  }
+}
+

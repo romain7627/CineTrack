@@ -1,0 +1,206 @@
+/* Header.css */
+
+.home-header {
+  background-color: var(--primary-color);
+  padding: 10px 0;
+}
+
+.wrap {
+  width: 95%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 85px;
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav a {
+  margin: 0 15px;
+  color: var(--third-color);
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  position: relative;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: var(--secondary-color);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.nav a:hover {
+  color: var(--secondary-color);
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  padding: 5px 10px;
+  border: 1px solid var(--third-color);
+  border-radius: 5px;
+  color: var(--primary-color);
+  background-color: var(--third-color);
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--third-color);
+}
+
+.profile-menu {
+  position: relative;
+}
+
+.profile-dropdown {
+  position: absolute;
+  right: 0;
+  background-color: var(--primary-color);
+  border: 1px solid var(--third-color);
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 1;
+}
+
+.profile-dropdown .btn {
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  color: var(--third-color);
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+  width: 100%;
+}
+
+.profile-dropdown .btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--third-color);
+}
+
+.burger-menu {
+  display: none;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 24px;
+  color: var(--third-color);
+}
+
+@media (max-width: 915px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+    padding: 20px 0;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .burger-menu {
+    display: block;
+  }
+
+  .nav a {
+    margin: 10px 20px;
+  }
+
+  .auth-buttons {
+    flex-direction: row;
+  }
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  background-color: var(--third-color);
+  border: 1px solid var(--third-color);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--primary-color);
+  text-decoration: none;
+  cursor: pointer;
+  width: 8rem;
+}
+
+.profile-picture {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-btn span {
+  margin-left: 5px;
+}
+
+.profile-dropdown a {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 0.5rem 0rem;
+}
+
+.profile-dropdown a:hover {
+  background: var(--secondary-color);
+}
+
+button.btn.logout-btn {
+  background-color: #ff4d4d;
+  border-radius: 5px;
+}
+
+button.btn.logout-btn:hover {
+  background-color: #ff0000;
+  border-radius: 5px;
+}
+
+a.btn.cinetrack-btn {
+  color: var(--primary-color);
+}
+
+a.btn.cinetrack-btn:hover {
+  color: white;
+}

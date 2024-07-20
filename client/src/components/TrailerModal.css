@@ -1,0 +1,182 @@
+.modal-container {
+  position: relative;
+  padding: 1rem;
+  background-color: #060D17;
+  color: white;
+}
+
+.trailer-video {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.modal-info {
+  padding: 1rem;
+}
+
+.info-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.info-section {
+  margin-right: 2rem;
+}
+
+.actors-carousel-container {
+  margin-top: 1rem;
+}
+
+.actor-card {
+  background-color: #1c1c1c;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  margin: 0 10px;
+}
+
+.actor-name {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.actor-character {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.css-e784if-MuiTypography-root, .react-multi-carousel-list {
+  margin-top: 1rem !important;
+}
+
+.css-2ulfj5-MuiTypography-root {
+  margin-bottom: 1rem !important;
+}
+
+.react-multi-carousel-item {
+  width: 300px !important;
+}
+
+.actor-card {
+  background-color: #060d17 !important;
+}
+
+.modal-info button {
+  background: var(--secondary-color);
+}
+
+.modal-info button:hover {
+  opacity: 0.5;
+  background: var(--secondary-color);
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.css-lll1vm-MuiButtonBase-root-MuiButton-root {
+  background: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.css-lll1vm-MuiButtonBase-root-MuiButton-root:hover {
+  background: var(--secondary-color);
+  opacity: 0.8;
+}
+
+svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
+  margin-right: 10px;
+}
+
+.favorite-button:hover {
+  opacity: 0.8;
+  background: var(--secondary-color) !important;
+}
+
+.info-container {
+  margin-top: 2rem !important;
+}
+
+.favorite-info h3 {
+  font-size: 16px !important;
+}
+
+.delete-button {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.delete-button:hover {
+  background: #e60000;
+}
+
+.react-multi-carousel-item {
+  cursor: pointer;
+}
+
+.favorite-info {
+  height: 9rem;
+}
+
+.favorite-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+button.complete-button {
+  WIDTH: 100%;
+  padding: 1rem;
+}
+
+.favorite-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.profile-picture-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-picture-wrapper img {
+  display: block;
+}
+
+.edit-icon {
+  position: absolute;
+  bottom: -10px;
+  right: -5px;
+  background: rgba(217, 217, 217);
+  border-radius: 50px;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.edit-icon:hover {
+  opacity: 1;
+}
+
+.css-1086bdv-MuiPaper-root-MuiAccordion-root:first-of-type {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin-top: 1rem;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.MuiAccordion-gutters.css-1086bdv-MuiPaper-root-MuiAccordion-root {
+  color: white;
+  box-shadow:none !important
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+  color: white !important;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.MuiAccordion-gutters.css-1086bdv-MuiPaper-root-MuiAccordion-root {
+  background: none !important;
+}
