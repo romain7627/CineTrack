@@ -359,7 +359,17 @@ app.get('/statistics', verifyToken, async (req, res) => {
 
     const totalMoviesQuery = `SELECT COUNT(*) FROM user_watch_history WHERE user_id = $1 AND type = 'film'`;
     const totalSeriesQuery = `SELECT COUNT(*) FROM user_watch_history WHERE user_id = $1 AND type = 'serie'`;
-    const totalDurationQuery = `SELECT SUM(duration) FROM user_watch_history WHERE user_id = $1`;
+    const totalEpisodesQuery = `SELECT SUM(total_episodes) AS total_episodes FROM user_watch_history WHERE user_id = $1`;
+    const totalDurationQuery = `
+      SELECT SUM(duration * COALESCE(total_episodes, 1)) AS total_duration 
+      FROM user_watch_history 
+      WHERE user_id = $1
+    `;
+    const averageDurationQuery = `
+      SELECT AVG(duration * COALESCE(total_episodes, 1)) AS average_duration 
+      FROM user_watch_history 
+      WHERE user_id = $1
+    `;
     const favoriteGenresQuery = `
       SELECT genre, COUNT(*) as count 
       FROM user_watch_history 
@@ -368,24 +378,79 @@ app.get('/statistics', verifyToken, async (req, res) => {
       ORDER BY count DESC 
       LIMIT 1
     `;
+    const leastFavoriteGenresQuery = `
+      SELECT genre, COUNT(*) as count 
+      FROM user_watch_history 
+      WHERE user_id = $1 
+      GROUP BY genre 
+      ORDER BY count ASC 
+      LIMIT 1
+    `;
+    const totalFavoritesQuery = `SELECT COUNT(*) FROM favorites WHERE user_id = $1`;
 
-    const [totalMoviesResult, totalSeriesResult, totalDurationResult, favoriteGenresResult] = await Promise.all([
+    const [
+      totalMoviesResult,
+      totalSeriesResult,
+      totalEpisodesResult,
+      totalDurationResult,
+      averageDurationResult,
+      favoriteGenresResult,
+      leastFavoriteGenresResult,
+      totalFavoritesResult
+    ] = await Promise.all([
       pool.query(totalMoviesQuery, [userId]),
       pool.query(totalSeriesQuery, [userId]),
+      pool.query(totalEpisodesQuery, [userId]),
       pool.query(totalDurationQuery, [userId]),
-      pool.query(favoriteGenresQuery, [userId])
+      pool.query(averageDurationQuery, [userId]),
+      pool.query(favoriteGenresQuery, [userId]),
+      pool.query(leastFavoriteGenresQuery, [userId]),
+      pool.query(totalFavoritesQuery, [userId])
     ]);
 
+    const totalMovies = totalMoviesResult.rows[0].count || 0;
+    const totalSeries = totalSeriesResult.rows[0].count || 0;
+    const totalEpisodes = totalEpisodesResult.rows[0].total_episodes || 0;
+    const totalDuration = totalDurationResult.rows[0].total_duration || 0;
+    const averageDuration = averageDurationResult.rows[0].average_duration || 0;
+    const favoriteGenre = favoriteGenresResult.rows[0]?.genre || 'N/A';
+    const leastFavoriteGenre = leastFavoriteGenresResult.rows[0]?.genre || 'N/A';
+    const totalFavorites = totalFavoritesResult.rows[0].count || 0;
+
     res.json({
-      totalMovies: totalMoviesResult.rows[0].count,
-      totalSeries: totalSeriesResult.rows[0].count,
-      totalDuration: totalDurationResult.rows[0].sum,
-      favoriteGenre: favoriteGenresResult.rows[0]?.genre || 'N/A'
+      totalMovies,
+      totalSeries,
+      totalEpisodes,
+      totalDuration,
+      averageDuration,
+      favoriteGenre,
+      leastFavoriteGenre,
+      totalFavorites
     });
   } catch (err) {
+    console.error('Erreur lors de la récupération des statistiques:', err);
     res.status(500).send('Erreur du serveur');
   }
+
+  const formatDuration = (minutes) => {
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const remainingHours = hours % 24;
+    const remainingMinutes = Math.floor(minutes % 60); // Floor to remove decimals
+  
+    if (days > 0) {
+      return `${days}j ${remainingHours}h ${remainingMinutes}min`;
+    } else {
+      return `${hours}h ${remainingMinutes}min`;
+    }
+  };
+  
 });
+
+;
+
+
+
 
 app.get('/genre-distribution', verifyToken, async (req, res) => {
   try {

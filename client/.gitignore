@@ -14,6 +14,8 @@ npm-debug.log*
 
 # dotenv environment variables file
 .env
+echo ".env" >> .gitignore
+
 
 # IDE files
 .vscode/

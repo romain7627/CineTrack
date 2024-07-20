@@ -1,70 +1,140 @@
-# Getting Started with Create React App
+# 🎬 CineTrack
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bienvenue sur **CineTrack**, votre nouvel outil indispensable pour suivre vos films, séries. 📽️🎮
 
-## Available Scripts
+## 📋 Table des Matières
 
-In the project directory, you can run:
+- [Fonctionnalités](#-fonctionnalités)
+- [Technologies Utilisées](#-technologies-utilisées)
+- [Installation](#-installation)
+- [Variables d'Environnement](#-variables-denvironnement)
+- [Lancement du Projet](#-lancement-du-projet)
+- [Points de Terminaison API](#-points-de-terminaison-api)
+- [Sécurité du Formulaire de Contact](#-sécurité-du-formulaire-de-contact)
+- [Contribution](#-contribution)
+- [Licence](#-licence)
 
-### `npm start`
+## 🌟 Fonctionnalités
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Authentification des Utilisateurs** : Connexion et inscription sécurisées avec JWT.
+- **Gestion du Profil** : Mise à jour des informations personnelles et de la photo de profil.
+- **Gestion des Favoris** : Ajouter, consulter et supprimer des films et séries favoris.
+- **Historique de Visionnage** : Suivre les films et séries visionnés avec détails.
+- **Détails des Films et Séries** : Récupération d'informations détaillées depuis l'API TMDB.
+- **Formulaire de Contact** : Soumission sécurisée des messages de contact vers MongoDB.
+- **Design Responsive** : Interface utilisateur conviviale et adaptable à tous les appareils.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Technologies Utilisées
 
-### `npm test`
+- **Frontend** : React, React Router, Axios, FontAwesome, React Multi Carousel
+- **Backend** : Node.js, Express.js, PostgreSQL, MongoDB, Mongoose, JWT, Bcrypt
+- **Styling** : CSS
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🧩 Installation
 
-### `npm run build`
+### Prérequis
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Node.js** et **npm** : [Télécharger et installer Node.js](https://nodejs.org/)
+- **PostgreSQL** : Assurez-vous qu'il est installé et en cours d'exécution.
+- **MongoDB** : Utilisez MongoDB Atlas pour une solution cloud ou localement.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Étapes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Cloner le dépôt** :
+   ```sh
+   git clone https://github.com/votre-nom-utilisateur/cinetrack.git
+   cd cinetrack
+   ```
 
-### `npm run eject`
+2. **Configuration du Backend** :
+   ```sh
+   cd server
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Configuration du Frontend** :
+   ```sh
+   cd client
+   npm install
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🔑 Variables d'Environnement
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Créez un fichier `.env` dans le répertoire `server` :
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```env
+PORT=5002
+JWT_SECRET=your_jwt_secret_key
+DB_USER=your_postgresql_username
+DB_HOST=localhost
+DB_NAME=your_postgresql_database_name
+DB_PASSWORD=your_postgresql_password
+DB_PORT=5432
+TMDB_API_KEY=your_tmdb_api_key
+MONGODB_URI=your_mongodb_uri
+```
 
-## Learn More
+## 🚀 Lancement du Projet
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Backend
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```sh
+cd server
+npm start
+```
 
-### Code Splitting
+### Frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```sh
+cd client
+npm start
+```
 
-### Analyzing the Bundle Size
+### Accédez à l'Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Ouvrez votre navigateur et allez à [http://localhost:3000](http://localhost:3000).
 
-### Making a Progressive Web App
+## 🛣️ Points de Terminaison API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Authentification
 
-### Advanced Configuration
+- **POST /signup** : Inscription
+- **POST /login** : Connexion
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Profil
 
-### Deployment
+- **GET /me** : Récupérer le profil utilisateur
+- **PUT /profile** : Mettre à jour le profil utilisateur
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Favoris
 
-### `npm run build` fails to minify
+- **POST /favorites** : Ajouter un favori
+- **GET /favorites** : Récupérer les favoris
+- **DELETE /favorites/:movie_id** : Supprimer un favori
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Historique de Visionnage
+
+- **POST /watch-history** : Ajouter à l'historique
+- **GET /watch-history** : Récupérer l'historique
+
+### Films et Séries
+
+- **GET /movie/:id** : Détails d'un film
+- **GET /details/:id** : Détails d'un film ou d'une série
+
+### Formulaire de Contact
+
+- **POST /contact** : Soumettre un message de contact
+
+## 🔒 Sécurité du Formulaire de Contact
+
+Le formulaire est sécurisé avec les validations suivantes :
+- **Nom** : Entre 4 et 150 caractères.
+- **Email** : Adresse email valide.
+- **Message** : Entre 10 et 500 caractères.
+
+Les validations sont effectuées avec express-validator pour garantir la sécurité et l'intégrité des données.
+
+## 🚀 Version Bêta et Développement Continu
+
+**CineTrack** est actuellement en version bêta et en cours de développement. De nouvelles fonctionnalités sont ajoutées régulièrement pour améliorer l'expérience utilisateur. Restez à l'écoute pour les mises à jour futures !

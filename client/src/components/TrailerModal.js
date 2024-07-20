@@ -62,13 +62,16 @@ function TrailerModal({ movie, trailerKey, open, onClose, isLoggedIn, saveMovie,
           seasonPromises.push(
             fetch(`https://api.themoviedb.org/3/tv/${movie.id}/season/${i}?api_key=561311980ae49b4077e5513c275e8d7c&language=fr-FR`)
               .then(response => response.json())
-              .catch(error => console.error('Erreur lors de la récupération des détails de la saison:', error))
+              .catch(error => {
+                console.error('Erreur lors de la récupération des détails de la saison:', error);
+                return { episodes: [] }; // Return empty episodes array on error
+              })
           );
         }
         const seasonData = await Promise.all(seasonPromises);
         setSeasons(seasonData);
 
-        const totalEpisodesCount = seasonData.reduce((total, season) => total + season.episodes.length, 0);
+        const totalEpisodesCount = seasonData.reduce((total, season) => total + (season.episodes ? season.episodes.length : 0), 0);
         setTotalEpisodes(totalEpisodesCount);
       }
     };
@@ -194,10 +197,10 @@ function TrailerModal({ movie, trailerKey, open, onClose, isLoggedIn, saveMovie,
                       </AccordionSummary>
                       <AccordionDetails>
                         <Typography>
-                          Nombre d'épisodes: {season.episodes.length}
+                          Nombre d'épisodes: {season.episodes ? season.episodes.length : 'N/A'}
                         </Typography>
                         <ul>
-                          {season.episodes.map((episode) => (
+                          {season.episodes && season.episodes.map((episode) => (
                             <li key={episode.id}>{episode.name}</li>
                           ))}
                         </ul>

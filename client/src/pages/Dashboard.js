@@ -13,8 +13,12 @@ function Dashboard() {
   const [statistics, setStatistics] = useState({
     totalMovies: 0,
     totalSeries: 0,
+    totalEpisodes: 0,
     totalDuration: 0,
-    favoriteGenre: 'N/A'
+    averageDuration: 0,
+    favoriteGenre: 'N/A',
+    leastFavoriteGenre: 'N/A',
+    totalFavorites: 0
   });
   const [genreDistribution, setGenreDistribution] = useState([]);
   const fileInputRef = useRef(null);
@@ -30,6 +34,7 @@ function Dashboard() {
           setProfilePicture(`http://localhost:5002${response.data.profile_picture}`);
         }
       } catch (err) {
+        console.error('Erreur lors de la récupération des données utilisateur:', err);
       }
     };
 
@@ -40,6 +45,7 @@ function Dashboard() {
         });
         setStatistics(response.data);
       } catch (err) {
+        console.error('Erreur lors de la récupération des statistiques:', err);
       }
     };
 
@@ -50,6 +56,7 @@ function Dashboard() {
         });
         setGenreDistribution(response.data);
       } catch (err) {
+        console.error('Erreur lors de la récupération de la distribution des genres:', err);
       }
     };
 
@@ -85,17 +92,25 @@ function Dashboard() {
       });
       setProfilePicture(response.data.profile_picture ? `http://localhost:5002${response.data.profile_picture}` : '/uploads/default-profile-picture.png');
     } catch (err) {
+      console.error('Erreur lors de la mise à jour de la photo de profil:', err);
     }
   };
 
   const formatDuration = (minutes) => {
     const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
-    return `${hours}h ${remainingMinutes}min`;
+    const days = Math.floor(hours / 24);
+    const remainingHours = hours % 24;
+    const remainingMinutes = Math.floor(minutes % 60); // Floor to remove decimals
+    
+    if (days > 0) {
+      return `${days}j ${remainingHours}h ${remainingMinutes}min`;
+    } else {
+      return `${hours}h ${remainingMinutes}min`;
+    }
   };
 
-  const genreLabels = genreDistribution.map(genre => genre.genre);
-  const genreData = genreDistribution.map(genre => genre.count);
+  const genreLabels = genreDistribution.length ? genreDistribution.map(genre => genre.genre) : [];
+  const genreData = genreDistribution.length ? genreDistribution.map(genre => genre.count) : [];
 
   const genreChartData = {
     labels: genreLabels,
@@ -200,17 +215,33 @@ function Dashboard() {
             <p>{statistics.totalSeries}</p>
           </div>
           <div className="statistic">
+            <h3>Épisodes regardés</h3>
+            <p>{statistics.totalEpisodes}</p>
+          </div>
+          <div className="statistic">
             <h3>Durée totale de visionnage</h3>
             <p>{formatDuration(statistics.totalDuration)}</p>
+          </div>
+          <div className="statistic">
+            <h3>Durée moyenne par visionnage</h3>
+            <p>{formatDuration(statistics.averageDuration)}</p>
           </div>
           <div className="statistic">
             <h3>Genre le plus regardé</h3>
             <p>{statistics.favoriteGenre}</p>
           </div>
+          <div className="statistic">
+            <h3>Favoris totaux</h3>
+            <p>{statistics.totalFavorites}</p>
+          </div>
         </div>
         <div className="chart-container">
           <h3>Répartition des genres</h3>
-          <Pie data={genreChartData} />
+          {genreLabels.length > 0 ? (
+            <Pie data={genreChartData} />
+          ) : (
+            <p>Aucune donnée disponible</p>
+          )}
         </div>
       </div>
     </div>
