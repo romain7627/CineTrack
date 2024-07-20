@@ -42,7 +42,7 @@ Bienvenue sur **CineTrack**, votre nouvel outil indispensable pour suivre vos fi
 
 1. **Cloner le dépôt** :
    ```sh
-   git clone https://github.com/votre-nom-utilisateur/cinetrack.git
+   git clone https://github.com/romain7627/CineTrack.git
    cd cinetrack
    ```
 
